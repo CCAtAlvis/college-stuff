@@ -1,0 +1,10 @@
+Case #1: BattleShip
+Case #2: Cruiser
+Case #3: Destroyer
+Case #4: Frigate
+Case #5: BattleShip
+Case #6: Cruiser
+Case #7: Destroyer
+Case #8: Frigate
+Case #9: Cruiser
+Case #10: Frigate

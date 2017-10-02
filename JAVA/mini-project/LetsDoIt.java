@@ -27,7 +27,22 @@ class Encrypt
     {
         try
         {
-            this.fin = new FileInputStream(fin);
+            this.fin = new FileInputStream( fin );
+        }
+        catch ( FileNotFoundException e )
+        {
+            System.out.println("OOPS!!! Looks like the file you want to encrypt does not exist.");
+            return;
+        }
+
+        String fout = fin + ".ecnrypt";
+        File file = new File( fout );
+        file.delete();
+        file = null;
+
+        try
+        {
+            this.fout = new FileOutputStream( fout , true );
         }
         catch ( FileNotFoundException e )
         {
@@ -67,7 +82,7 @@ class Encrypt
         // String fileString = "";
         ArrayList binaryChars = new ArrayList();
         String temp = "";
-        char binary = '\0';
+        //char binary = '\0';
         byte decimal;
         System.out.println("\nWow. The program now is encrypting your file!!!");
 
@@ -75,6 +90,7 @@ class Encrypt
         try {
             do
             {
+                temp = "";
                 i = fin.read();
                 if ( i == -1 )
                     break;
@@ -84,21 +100,37 @@ class Encrypt
                 // fileArray.add( (char) i );
 
                 temp = getBinary( (char) i );
+                if ( i == 32 )
+                    temp = "0" + temp;
                 
                 for ( i = 0; i < 7; i++ )
-                    binaryChars.add( (int) temp.substring( i, i + 1 ) );
+                    binaryChars.add( temp.substring( i, i + 1 ) );
 
                 while ( binaryChars.size() > 3 )
                 {
+                    temp = "";
                     for ( i = 0; i < 4; i++ )
                         temp = temp + binaryChars.get( i );
 
                     decimal = getDecimal( temp );
+                    fout.write( key + decimal );
 
                     binaryChars.remove( 0 );
                 }
             }
             while ( i != -1 );
+
+            for ( i = 0; i < binaryChars.size(); i++ )
+                temp = temp + binaryChars.get( i );
+
+            while ( 4 != temp.length() )
+            {
+                temp = "0" + temp;
+            }
+
+            decimal = getDecimal( temp );
+            fout.write( key + decimal );
+
         }
         // catch the IOException if there is any error in reading the file
         catch ( Exception e )
@@ -112,6 +144,8 @@ class Encrypt
             try
             {
                 fin.close();
+                fout.close();
+                System.out.println("YES!!! Your file is now encrypted.");                
             }
             // and catch Exception if we *the program actually* are no able to close the file
             catch ( Exception e )

@@ -14,51 +14,40 @@ class Texteditor extends Frame implements ActionListener
     public Texteditor ()
     {
         MenuBar mb = new MenuBar();
-        setLayout( new BorderLayout() );
-        add( "Center",ta );
-        setMenuBar( mb );
+        setLayout(new BorderLayout());
+        add("Center", ta);
+        setMenuBar(mb);
 
-        Menu m1 = new Menu( "File" );
-        Menu m2 = new Menu( "Edit" );
-        Menu m3 = new Menu( "Tools" );
-        Menu m4 = new Menu( "Help" );
-        mb.add( m1 );
-        mb.add( m2 );
-        mb.add( m3 );
-        mb.add( m4 );
+        Menu m1 = new Menu("File");
+        Menu m2 = new Menu("Edit");
+        Menu m3 = new Menu("Tools");
+        Menu m4 = new Menu("Help");
+        mb.add(m1);
+        mb.add(m2);
+        mb.add(m3);
 
-        MenuItem mi1[] = { new MenuItem( "New" ),
-        new MenuItem( "Open" ),
-        new MenuItem( "Save" ),
-        new MenuItem( "Save As" ),
-        new MenuItem( "Page Setup" ),
-        new MenuItem( "Print" ),
-        new MenuItem( "Exit" )};
+        MenuItem mi1[] = { new MenuItem("New"),
+        new MenuItem("Open"),
+        new MenuItem("Save"),
+        new MenuItem("Save As"),
+        new MenuItem("Exit")};
 
-        MenuItem mi2[] = { new MenuItem( "Delete" ),
-        new MenuItem( "Cut" ),
-        new MenuItem( "Copy" ),
-        new MenuItem( "Paste" ),
-        new MenuItem( "Find" ),
-        new MenuItem( "Find Next" ),
-        new MenuItem( "Replace" ),
-        new MenuItem( "Go To" ),
-        new MenuItem( "Select All" )};
+        MenuItem mi2[] = { new MenuItem("Delete"),
+        new MenuItem("Cut"),
+        new MenuItem("Copy"),
+        new MenuItem("Paste"),
+        new MenuItem("Select All")};
 
-        MenuItem mi3[]={ new MenuItem( "Configure" ),
-        new MenuItem( "Compile" ),
-        new MenuItem( "Run" )};
+        MenuItem mi3[] = { new MenuItem("Compile"),
+        new MenuItem("Run")};
 
-        MenuItem mi4[]={ new MenuItem( "Help Topics" ),
-        new MenuItem( "About")};
-
-        for ( int i = 0; i < mi1.length ; i++ )
+        for (int i = 0; i<mi1.length; i++)
         {
             m1.add(mi1[i]);
             mi1[i].addActionListener(this);
         }
 
-        for ( int i = 0; i < mi2.length ; i++)
+        for (int i = 0; i<mi2.length; i++)
         {
             m2.add(mi2[i]);
             mi2[i].addActionListener(this);
@@ -67,16 +56,10 @@ class Texteditor extends Frame implements ActionListener
         m3.add(chkb);
         chkb.addActionListener(this);
 
-        for ( int i=0 ; i < mi3.length ; i++ )
+        for (int i = 0; i<mi3.length; i++)
         {
-            m3.add(mi3[i]);  
-            mi3[i].addActionListener(this);  
-        } 
-
-        for ( int i = 0; i < mi4.length ; i++ )
-        {
-            m4.add(mi4[i]);
-            mi4[i].addActionListener(this);
+            m3.add(mi3[i]);
+            mi3[i].addActionListener(this);
         }
 
         MyWindowsAdapter mw = new MyWindowsAdapter(this);
@@ -87,10 +70,10 @@ class Texteditor extends Frame implements ActionListener
     }
 
     public void actionPerformed(ActionEvent ae)
-    {  
-        String arg = ( String ) ae.getActionCommand();
+    {
+        String arg = (String)ae.getActionCommand();
 
-        if ( arg.equals("New") )
+        if (arg.equals("New"))
         {
             dispose();
             Texteditor t11=new Texteditor();
@@ -100,19 +83,21 @@ class Texteditor extends Frame implements ActionListener
 
         try
         {  
-            if(arg.equals("Open"))
+            if (arg.equals("Open"))
             {
-                FileDialog fd1=new FileDialog(this,"Select File",FileDialog.LOAD);
+                FileDialog fd1 = new FileDialog(this,"Select File",FileDialog.LOAD);
                 fd1.setVisible(true);
-                String s4="";
-                s2=fd1.getFile();
-                s3=fd1.getDirectory();
-                s32=s3+s2;
-                File f=new File(s32);
-                FileInputStream fii=new FileInputStream(f);
-                len=(int)f.length();
 
-                for(int j=0;j<len;j++ )
+                String s4 = "";
+                s2 = fd1.getFile();
+                s3 = fd1.getDirectory();
+                s32 = s3+s2;
+
+                File f = new File(s32);
+                FileInputStream fii = new FileInputStream(f);
+
+                len = (int)f.length();
+                for(int j = 0; j<len; j++)
                 {
                     char s5=(char)fii.read();
                     s4=s4 + s5;
@@ -121,78 +106,102 @@ class Texteditor extends Frame implements ActionListener
                 ta.setText(s4);
             }
         }
-        catch(IOException e)
+        catch (IOException e)
         {
         }
 
         try
         {
-            if(arg.equals("Save As"))
+            if (arg.equals("Save As"))
             {
-                FileDialog dialog1=new FileDialog(this,"Save As",FileDialog.SAVE);
+                FileDialog dialog1 = new FileDialog(this,"Save As",FileDialog.SAVE);
                 dialog1.setVisible(true);
-                s7=dialog1.getDirectory();
-                s8=dialog1.getFile();
-                s9=s7+s8+".txt";
-                s6=ta.getText();
-                len1=s6.length();
-                byte buf[]=s6.getBytes();
-                File f1=new File(s9);
-                FileOutputStream fobj1=new FileOutputStream(f1);
+                s7 = dialog1.getDirectory();
+                s8 = dialog1.getFile();
+                s9 = s7+s8+".txt";
+                s6 = ta.getText();
+                len1 = s6.length();
+                byte buf[] = s6.getBytes();
+                File f1 = new File(s9);
+                FileOutputStream fobj1 = new FileOutputStream(f1);
 
-                for(int k=0;k<len1;k++)
+                for(int k = 0; k<len1; k++)
                     fobj1.write(buf[k]);
 
                 fobj1.close();
             }
 
-            this.setTitle(s8 +" Texteditor File");
+            this.setTitle(s8 + " Texteditor File");
         }
-        catch(IOException e)
+        catch (IOException e)
         {
         }
 
-        if(arg.equals("Exit"))
+        if (arg.equals("Exit"))
             System.exit(0);
 
-        if(arg.equals("Cut"))
+        if (arg.equals("Cut"))
         {
-            str=ta.getSelectedText();
-            i=ta.getText().indexOf(str);
-            ta.replaceRange(" ",i,i+str.length());
+            str = ta.getSelectedText();
+            i = ta.getText().indexOf(str);
+            ta.replaceRange(" ", i, i+str.length());
         }
 
-        if(arg.equals("Copy"))
-            str=ta.getSelectedText();
+        if (arg.equals("Copy"))
+            str = ta.getSelectedText();
 
-        if(arg.equals("Paste"))
+        if (arg.equals("Paste"))
         {
-            pos1=ta.getCaretPosition();
-            ta.insert(str,pos1);
+            pos1 = ta.getCaretPosition();
+            ta.insert(str, pos1);
         }
 
-        if(arg.equals("Delete"))
+        if (arg.equals("Delete"))
         {
-            String msg=ta.getSelectedText();
-            i=ta.getText().indexOf(msg);
-            ta.replaceRange(" ",i,i+msg.length());
+            String msg = ta.getSelectedText();
+            i = ta.getText().indexOf(msg);
+            ta.replaceRange(" ", i, i+msg.length());
             msg="";
         }
 
-        if(arg.equals("Select All"))
+        if (arg.equals("Select All"))
+            ta.select(0, ta.getText().length());
+
+        try
         {
-            String strText=ta.getText();
-            int strLen=strText.length();
-            ta.select(0,strLen);
+            if (arg.equals("Compile"))
+            {
+                s32 = s3+s2;
+                String cmd = "javac " + s32;
+                Runtime run = Runtime.getRuntime();
+                Process pr = run.exec(cmd);
+                System.out.println("Complie Command Successful!");
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println("Complie Command Error!!!");
+            System.out.println("cought e : " + e);
         }
 
-        if(arg.equals("About"))
+        try
         {
-            AboutDialog d1=new AboutDialog(this,"About");
-            d1.setVisible(true);
-            setSize(500,500);
+            if (arg.equals("Run"))
+            {
+                String file = s2.substring(0, s2.length() - 5);
+                String cmd = "java " + s3 + file;
+                Runtime run = Runtime.getRuntime();
+                Process pr = run.exec(cmd);
+                System.out.println("Run Command Successful");
+            }
         }
-    }//Action pereformed end
+        catch (Exception e)
+        {
+            System.out.println("Run Command Error!!!");
+            System.out.println("cought e : " + e);
+        }
+
+    }
 
     public class MyWindowsAdapter extends WindowAdapter
     {
@@ -207,34 +216,13 @@ class Texteditor extends Frame implements ActionListener
         {
             tt.dispose();
         }
-    }//Inner class winadapter end....
-}//End of Texteditor class
+    }
+}
 
 public class project
 {
     public static void main(String args[])
     {
         Texteditor to=new Texteditor();
-    }
-}
-
-class AboutDialog extends Dialog implements ActionListener
-{
-    AboutDialog(Frame parent,String title)
-    {
-        super(parent,title,false);
-        this.setResizable(false);
-        setLayout(new FlowLayout(FlowLayout.LEFT));
-        setSize(500,300);
-    }
-
-    public void actionPerformed(ActionEvent ae)
-    {
-        dispose();
-    }
-
-    public void windowClosing(WindowEvent e)
-    {
-        dispose();
     }
 }

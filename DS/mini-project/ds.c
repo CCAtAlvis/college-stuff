@@ -1,6 +1,5 @@
 /*Design a software for a retail store to keep track of inventory. 
 The software should generate a report of items whose quantity is below threshold*/
-// #include<conio.h>
 #include<stdio.h>
 #include<malloc.h>
 #include<string.h>
@@ -44,8 +43,6 @@ void storeData()
 
     ptr = start;
 
-    // new code
-    {
     for(i=0;i!='\0';i++)
         putc(ptr->item[i],fpName);
 
@@ -69,7 +66,6 @@ void storeData()
 
         ptr = ptr->next;
     }
-    }
 }
 
 
@@ -92,7 +88,7 @@ void restoreData()
     while(!feof(fpCode))
     {
 	    ptr = (struct inventory*)malloc(sizeof(struct inventory));
-        // printf("%c",fgetc(fpName));
+
         while(c!='\0')
         {
             c = fgetc(fpName);
@@ -100,6 +96,7 @@ void restoreData()
             ptr->item[i] = c;
             i++;
         }
+
         ptr->item[i] = '\0';
 
         fscanf(fpCode, "%d", &ptr->itemCode);
@@ -109,9 +106,9 @@ void restoreData()
         addNewItem(ptr);
     }
 }
+
 void arrangeItem()
 {
-
     struct inventory *ptr1 = start;
     struct inventory *ptr2;
     struct inventory *temp;
@@ -120,6 +117,7 @@ void arrangeItem()
     while (ptr1->next != NULL)
     {
         ptr2 = ptr1->next;
+ 
         while (ptr2 != NULL)
         {
             if ((ptr1->quantity-ptr1->threshold) < (ptr2->quantity-ptr2->threshold))
@@ -144,7 +142,6 @@ void arrangeItem()
             }
         }
     }
-
 }
 
 void addNewItem(struct inventory *addedItem)
@@ -166,22 +163,24 @@ void addNewItem(struct inventory *addedItem)
         ptr->next = newItem;
         newItem->next=NULL;
     }
+
     printf("Item saved\n");
 }
 
 void deleteItem()
 {
-        int itmcd;
-        struct inventory *ptr = start;
-        struct inventory *preptr;
-        printf("enter item code");
-        scanf("%d",&itmcd);
-        if(start->itemCode==itmcd)
-        {
-            start = start->next;
-        }
-        else
-        {
+    int itmcd;
+    struct inventory *ptr = start;
+    struct inventory *preptr;
+    printf("enter item code");
+    scanf("%d",&itmcd);
+
+    if(start->itemCode==itmcd)
+    {
+        start = start->next;
+    }
+    else
+    {
         preptr = start;
         ptr = ptr->next;
         do
@@ -192,13 +191,14 @@ void deleteItem()
                 free(ptr);
                 printf("\nItem deleted\n");
             }
+
             preptr = ptr;
             ptr = ptr->next;
-        }while(ptr!=NULL);
-        if(ptr == NULL)
-        {
-            printf("\nItem not found\n");
         }
+        while(ptr!=NULL);
+
+        if(ptr == NULL)
+            printf("\nItem not found\n");
     }
 }
 
@@ -209,6 +209,7 @@ void changeQuantity()
     struct inventory *ptr = start;
     printf("\nEnter Item code ");
     scanf("%d",&itmcd);
+
     do
     {
         if(ptr->itemCode==itmcd)
@@ -216,12 +217,15 @@ void changeQuantity()
             printf("\nEnter quantity added : ");
             scanf("%d",&qntadd);
             ptr->quantity+= qntadd;
-            // arrangeItem(ptr);
+
             printf("\nQuantity changed\n");
             break;
         }
+
         ptr= ptr->next;
-    }while(ptr!=NULL);
+    }
+    while(ptr!=NULL);
+
     if(ptr==NULL)
         printf("\nItem not found\n");
 }
@@ -233,6 +237,7 @@ void changeThreshold()
     struct inventory *ptr = start;
     printf("\nEnter Item code ");
     scanf("%d",&itmcd);
+
     do
     {
         if(ptr->itemCode==itmcd)
@@ -244,8 +249,11 @@ void changeThreshold()
             printf("\nThreshold changed\n");
             break;
         }
+
         ptr= ptr->next;
-    }while(ptr!=NULL);
+    }
+    while(ptr!=NULL);
+
     if(ptr==NULL)
         printf("\nItem not found\n");
 }
@@ -254,6 +262,7 @@ void thresholdReport()
 {
     struct inventory *ptr = start;
     int i = 0;
+
     do
     {
         if(ptr->quantity < ptr->threshold)
@@ -262,8 +271,11 @@ void thresholdReport()
             printf("\nQuantity : %d, Threshold :%d",ptr->quantity,ptr->threshold);
             printf("\nPrice : %d\n",ptr->price);
         }
+
         ptr = ptr->next;
-    }while(ptr!=NULL);
+    }
+    while(ptr!=NULL);
+
     printf("\n\n");
 }
 
@@ -276,11 +288,12 @@ void allReport()
     {
         printf("\n%d. %s(item code : %d) :",++i,ptr->item,ptr->itemCode);
         printf("\nQuantity : %d, Threshold :%d",ptr->quantity,ptr->threshold);
-            printf("\nPrice : %d\n",ptr->price);
-            ptr = ptr->next;
+        printf("\nPrice : %d\n",ptr->price);
+        ptr = ptr->next;
         
     }
     while(ptr!=NULL);
+
     printf("\n\n");
 }
 
@@ -291,6 +304,7 @@ void itemBought()
     struct inventory *ptr = start;
     printf("\nEnter Item code ");
     scanf("%d",&itmcd);
+
     do
     {
         if(ptr->itemCode==itmcd)
@@ -298,11 +312,12 @@ void itemBought()
             printf("\nEnter number of the item bought : ");
             scanf("%d",&qntchg);
             ptr->quantity -= qntchg;
-            // arrangeItem(ptr);
             break;
         }
+
         ptr = ptr->next;
-    } while(ptr!=NULL);
+    }
+    while(ptr!=NULL);
 
     if(ptr==NULL)
         printf("\nItem not found\n");
@@ -313,16 +328,19 @@ void main()
     int choice;
     struct inventory *Item = (struct inventory*)malloc(sizeof(struct inventory));    
     restoreData();
+
     do
     {
         printf("1.Item bought\n2.Add new item\n3.delete an item\n4.Change quantity of an item\n5.Change threshold of an item\n");
         printf("Print Report :\n6.items having quantity less than threshold\n7.all items\n8.Exit\n");
         printf("Enter Choice\n");
         scanf("%d",&choice);
+
         switch(choice)
         {
             case 1: itemBought();
                     break;
+
             case 2: 
                 printf("\nEnter item name :");
                 scanf("%s",Item->item);
@@ -339,18 +357,24 @@ void main()
             
             case 3: deleteItem();
                     break;
+
             case 4: changeQuantity();
                     break;
+
             case 5: changeThreshold();
                     break;
+
             case 6: thresholdReport();
                     break;
+
             case 7: allReport();
                     break;
+
             case 8: break;
             default:("invalid choice");
         }
-    }while(choice!=8);
+    }
+    while(choice!=8);
+
     storeData();
-    // getch();
 }

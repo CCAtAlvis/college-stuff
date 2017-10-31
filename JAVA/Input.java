@@ -6,9 +6,10 @@ import java.io.*;
 import java.util.*;
 class input
 {
-	static void scanner_input()
+	static void scanner_input ()
 	{
 		Scanner sc = new Scanner(System.in);
+		
 		System.out.println("Enter a string(using Scanner)");
 		String s = sc.nextLine();
 		System.out.println("Entered String is : "+s);
@@ -17,7 +18,7 @@ class input
 		System.out.println("Entered number is : "+n);
 	}
 
-	static void buffered_input() throws IOException
+	static void buffered_input () throws IOException
 	{ 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
@@ -29,7 +30,7 @@ class input
 		System.out.println("Entered number is : "+n);	
 	}
 
-	static void right_shift()
+	static void right_shift ()
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter a number");
@@ -37,7 +38,7 @@ class input
 		System.out.println("After shifting :"+(num>>3));
 	}
 
-	public static void main(String[] args) 
+	public static void main (String[] args) 
 	{
 		String s = args[0];
 		double d = Double.parseDouble(args[1]);
@@ -51,7 +52,7 @@ class input
 		{
 			buffered_input();
 		}
-		catch(Exception e)
+		catch (Exception e)
 		{
 			System.out.println(e);
 		}

@@ -4,18 +4,18 @@ student according to given range using switch statement.*/
 import java.util.*;
 class grade
 {
-	public static void main(String[] args) 
+	public static void main (String[] args) 
 	{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter marks of student");
 		int marks = sc.nextInt();
 
-		if(marks > 100)
+		if (marks > 100)
 			marks = -1;
 		else
 			marks = marks/10;
 
-		switch(marks)
+		switch (marks)
 		{
 			case 10:
 			case 9:	System.out.println("Grade : A");

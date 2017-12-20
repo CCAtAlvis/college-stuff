@@ -1,0 +1,19 @@
+save.image(), to save
+
+Datatypes
+- Numerics
+- char
+- logical
+- complex
+
+getwd(), returns the current Working Directory
+setwd("bla/bla"), set the current Working Directory
+"<-" or "=" assignment operator
+
+R objects
+- vectors
+- lists
+- matrices
+- arrays
+- factors
+- data frames

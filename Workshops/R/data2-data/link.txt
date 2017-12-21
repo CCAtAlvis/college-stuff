@@ -1,0 +1,21 @@
+'http://s3.amazonaws.com/assets.datacamp.com/production/course_1294/datasets/sales.csv'
+x<-c(20,16,19.79999924,18.39999962,17.10000038,15.5,14.69999981,17.10000038,15.39999962,16.20000076,15,17.20000076,16,17,14.39999962)
+y<-c(88.59999847,71.59999847,93.30000305,84.30000305,80.59999847,75.19999695,69.69999695,82,69.40000153,83.30000305,79.59999847,82.59999847,80.59999847,83.5,76.30000305)
+
+
+#
+
+gg <- ggplot(midwest, 
+             aes(x=area, 
+            y=poptotal)) +
+        geom_point(aes(col=state,
+        size=popdensity)) + geom_smooth(method="loess", se=F) + 
+  xlim(c(0, 0.1)) + 
+  ylim(c(0, 500000)) + 
+  labs(subtitle="Area Vs Population", 
+       y="Population", 
+       x="Area", 
+       title="Scatterplot", 
+       caption = "Source: midwest")
+
+plot(gg)

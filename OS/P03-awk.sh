@@ -1,7 +1,6 @@
-awk '{print $1 }' grades.txt
+awk '{print $1 }' P03-grades.txt
 
 echo
-echo
 
-cat grades.txt | awk '{print $2}'
+cat P03-grades.txt | awk '{print $2}'
 

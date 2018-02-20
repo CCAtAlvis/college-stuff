@@ -1,0 +1,6 @@
+dog
+GDP
+apple
+cat
+banana
+elephant

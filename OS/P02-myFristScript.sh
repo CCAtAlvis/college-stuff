@@ -1,5 +1,5 @@
 #!/bin/bash
-echo $BASH
-echo $BASH_VERSION
-echo $HOME
-echo $PWD
+echo SHELL: $SHELL
+echo home dir: $HOME
+echo OS: $(lsb_release -is)
+echo current path: $(pwd)

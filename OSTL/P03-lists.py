@@ -20,22 +20,39 @@ def mergeAndSort():
 	ip = input("enter data for lis1: ")
 	l1 = ip.split()
 	ip = input("enter data for list2: ")
-	l2 = ip.split()	
-	
-	for i in range(len(l)):
+	l2 = ip.split()
+
+	l3 = []
+
+	for i in range(len(l1)):
 		l1[i] = int(l1[i])
+	for i in range(len(l2)):
 		l2[i] = int(l2[i])
 
+	for i in len(l1):
+		l3.append(i)
+	for i in len(l2):
+		l3.append(i)
+
+	l3.sort()
+	print(l3)
 
 def minMax():
-	pass
+	ip = input("enter data for lis1: ")
+	l1 = ip.split()
+
+	for i in range(len(l1)):
+		l1[i] = int(l1[i])
+
+	l1.sort()
+	print("min:", l1[0], "\tmax:",l1[len(l1)-1])
 
 
 def op3():
 	ip = input("enter list of data: ")
 	l = ip.split()
 	ip = input("enter new element: ")
-	lp[0] = ip
+	l[0] = ip
 	mid = len(l)//2
 	del(l[mid])
 
@@ -43,7 +60,19 @@ def op3():
 
 
 def op5():
-	pass
+	ip = input("enter list of data: ")
+	l = ip.split()
+	ip = int(input("enter number of new entries: "))
+
+	for i in range(ip):
+		name = input("enter data: ")
+		l.append(name)
+
+	if "python" in l:
+		print("\"python\" exist in the list")
+	else:
+		print("\"python\" does not exist in the list")
+
 
 print("Menu")
 print("1. sort in even and odd lists")

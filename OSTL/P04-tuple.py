@@ -13,7 +13,7 @@ for i in range(n):
 
 # problem
 # menu driven progem
-#1: create a kek value pair
+#1: create a key value pair
 #2: update, concat, delete items
 #3: find a key and print its value
 #4: map 2 list into dict

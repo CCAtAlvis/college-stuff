@@ -4,6 +4,7 @@
 # elif type(input) == number:
 #   find factorial
 #   find if palindrome
+#
 
 def pal(st):
 	l = len(st)

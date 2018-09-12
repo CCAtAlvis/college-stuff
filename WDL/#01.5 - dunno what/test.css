@@ -1,0 +1,51 @@
+body {
+    margin: 0;
+    background: #F3F3F3;
+}
+
+h1 {
+    background: #333;
+    margin: 0;
+    color: #FFF;
+    font-family: arial;
+    padding: 20px
+}
+h2 { font-family: roboto; }
+
+table {
+    font-family: roboto;
+    color: #333;
+    border-collapse: collapse;
+}
+
+td, th {
+    min-width: 200px;
+    padding: 5px;
+}
+
+th { border-top: 1px solid #000; }
+tr { border-bottom: 1px dashed #333; }
+tr:nth-child(odd) { background: #EEE; }
+
+tr:hover {
+    background: #DDD;
+}
+
+#mumbai-office {
+    padding-left: 20px;
+    float: left;
+}
+
+#right-panel {
+    background: #222;
+    color: aliceblue;
+    float: left;
+    margin-left: 30px;
+    margin-top: 30px;
+    padding: 10px;
+    min-width: 300px;
+}
+
+.red { color: blue; text-align: right; }
+
+.blue { color: red; text-align: center; }

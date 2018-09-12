@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sorting in js</title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+	var n = parseInt(prompt("enter number of values"));
+
+	Array.prototype.mySort = function() {
+	  	items = this;
+  		var length = items.length;
+	  	for (var i = 0; i < length; i++) { //Number of passes
+	    	for (var j = 0; j < (length - i - 1); j++) { //Notice that j < (length - i)
+	      		//Compare the adjacent positions
+	      		if (items[j] > items[j + 1]) {
+	        	//Swap the numbers
+		        	var tmp = items[j]; //Temporary variable to hold the current number
+		        	items[j] = items[j + 1]; //Replace current number with adjacent number
+		        	items[j + 1] = tmp; //Replace adjacent number with current number
+	      		}
+    		}
+	  	}
+	};
+
+	var numbers = [];
+	for(i=0;i<n;i++) {
+		num = prompt("enter number " + (i+1));
+		num = parseInt(num);
+		numbers.push(num);
+	}
+
+	console.log(numbers);
+	numbers.mySort();
+	document.write(numbers);
+	console.log(numbers);
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 data = []
-datafile = open("nbc-data.txt", "r")
+datafile = open("nbc-data-2.txt", "r")
 for line in datafile:
     dataList = list(line.split(','))
     dataList = [i.replace(" ","").replace("\n","") for i in dataList]
@@ -31,7 +31,7 @@ for i in data:
             if k in i and j not in distinct[target]:
                 prob[j+k] += 1/count[k]
 
-f = input("enter color type origin: ").split()
+f = input("enter outlook temp humidity wind: ").split()
 
 p = dict()
 for i in distinct[target]:
@@ -44,9 +44,14 @@ for j in distinct[target]:
 
     p[j] = p[j] * count[j] / len(data)
 
-print(max(p))
+# print(p)
+print(max(p, key=p.get))
 
 # OUTPUT
 # Enter the target attribute number(0-3): 3
 # enter color type origin: red sports imported
 # yes
+
+# Enter the target attribute number(0-4): 4
+# enter outlook temp humidity wind: sunny hot high weak
+# no
